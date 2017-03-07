@@ -19,7 +19,7 @@ import CodeSlide, { CodeSlideTitle } from 'spectacle-code-slide'
 
 import VictoryPlayground from './victory-playground'
 import ShotsDemo from './shots-demo'
-import PossessionBarDemo from '../charts/poss-bar-demo'
+import PossessionBarDemo from './poss-demo'
 import data from '../data'
 import shotsDemoRN from './shots-demo/shots-pie-demo-rn.js'
 

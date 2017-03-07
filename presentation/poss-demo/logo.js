@@ -1,35 +1,31 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Radium from 'radium'
 
 import { VictoryAnimation } from 'victory'
 
-@Radium
-export default class Logo extends Component {
-  render () {
-    const { logo, style, faded, onClick } = this.props
-
-    return (
-      <VictoryAnimation
-        data={{ opacity: faded ? 0.4 : 1 }}
-        duration={.4}
-        easing='quadInOut'>
-        {(animatedStyles) => (
-          <div
-            onClick={onClick}
-            style={[styles.logoContainer, ...style, animatedStyles]}>
-            <img style={styles.logo} src={logo.replace('{{width}}', '200').replace('{{height}}', '200')} />
-          </div>
-        )}
-      </VictoryAnimation>
-    )
-  }
-
+const Logo = ({ logo, style, faded, larger, onClick }) => {
+  console.log('faded', faded)
+  console.log('larger', larger)
+  return (
+    <VictoryAnimation
+      data={{
+        opacity: faded ? 0.3 : 1,
+        width: larger ? '130' : '100'
+      }}
+      duration={400}
+      easing='quadInOut' >
+      {({ opacity, width }) => (
+        <div
+          onClick={onClick}
+          style={[styles.logoContainer, ...style]}>
+          <img style={{ width: `${width}%`, opacity }} src={logo.replace('{{width}}', '200').replace('{{height}}', '200')} />
+        </div>
+      )}
+    </VictoryAnimation>
+  )
 }
 
 const styles = {
-  logo: {
-    width: '100%'
-  },
   logoContainer: {
     display: 'flex',
     justifyContent: 'center',
@@ -38,7 +34,6 @@ const styles = {
     height: '25px',
     width: '25px'
   }
-  // logoHover: {
-  //   transform: 'scale(1.5)'
-  // },
 }
+
+export default Radium(Logo)
