@@ -3,6 +3,7 @@ import Color from 'color'
 import Radium from 'radium'
 
 import Logo from './logo'
+import StatsDetail from './stats-detail'
 import PossessionBar from '../../charts/poss-bar-demo'
 const soccer = require('../../assets/soccer.svg')
 
@@ -22,11 +23,10 @@ function generateTheta (numCharts) {
 
 const theta = generateTheta(20)
 
-function getTeamDataObj ({ logo, colors, clubStats }, matchId) {
+function getTeamDataObj ({ clubStats, ...data }, matchId) {
   return {
+    ...data,
     matchId,
-    logo,
-    colors,
     possTtl: clubStats.possession_percentage.statValue,
     possFH: clubStats.possession_percentage.statFH,
     possSH: clubStats.possession_percentage.statSH,
@@ -47,7 +47,7 @@ export default class PossessionBarDemo extends Component {
       activeMatch: null,
     }
 
-    this.onLogoClicked = this.onLogoClicked.bind(this)
+    this.onMatchClicked = this.onMatchClicked.bind(this)
     this.renderCircle = this.renderCircle.bind(this)
     this.renderBar = this.renderBar.bind(this)
   }
@@ -57,7 +57,7 @@ export default class PossessionBarDemo extends Component {
     parentDiv.style.height = '100%'
   }
 
-  onLogoClicked (matchId) {
+  onMatchClicked (matchId) {
     matchId === this.state.activeMatch
       ? this.setState({ activeMatch: null })
       : this.setState({ activeMatch: matchId })
@@ -74,16 +74,19 @@ export default class PossessionBarDemo extends Component {
     const left = (chartsContainerHeight / 2 - 65) + parseInt(Math.round(radius * (Math.sin(factor)))) + 'px'
 
     return (
-      <div key={`bar-${i}`} style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        position: 'absolute',
-        top: top,
-        left: left,
-        height: '130px',
-        width: '130px',
-        transform: `rotate(${(360/20*i)}deg)`
+      <div
+        key={`bar-${i}`}
+        onClick={() => this.onMatchClicked(matchId)}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-end',
+          position: 'absolute',
+          top: top,
+          left: left,
+          height: '130px',
+          width: '130px',
+          transform: `rotate(${(360/20*i)}deg)`
       }}>
         <PossessionBar
           faded={activeMatch && matchId !== activeMatch}
@@ -114,7 +117,7 @@ export default class PossessionBarDemo extends Component {
         logo={logo}
         faded={activeMatch && matchId !== activeMatch}
         larger={activeMatch && matchId === activeMatch}
-        onClick={() => this.onLogoClicked(matchId)}
+        onClick={() => this.onMatchClicked(matchId)}
         style={{ top, left }} />
     )
   }
@@ -145,6 +148,12 @@ export default class PossessionBarDemo extends Component {
         <div style={styles.circleContainer} />
         <div style={styles.logosContainer}>
           { teams.map((team, i) => this.renderCircle(team, i)) }
+        </div>
+        <div style={[styles.statsContainer, activeMatch && styles.showStats]}>
+          { activeMatch
+            ? <StatsDetail activeMatch={data.filter(({ matchId }) => activeMatch === matchId)[0]} />
+            : null
+          }
         </div>
       </div>
     )
@@ -179,6 +188,18 @@ const styles = {
     position: 'absolute',
     width: '365px',
     height: '365px'
+  },
+  statsContainer: {
+    position: 'absolute',
+    width: '140px',
+    height: '190px',
+    visibility: 'hidden',
+    opacity: 0,
+    transition: 'visibility 0s, opacity 0.5s ease-in-out'
+  },
+  showStats: {
+    visibility: 'visible',
+    opacity: 1
   },
   soccerBall: {
     width: 140,

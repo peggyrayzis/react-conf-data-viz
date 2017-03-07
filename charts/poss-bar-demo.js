@@ -16,8 +16,6 @@ const PossessionBar = ({ colorScheme, data, faded }) => (
           data: {
             fill: d => colorScheme[d.x],
             width: d => d.x === 1 ? 11.5 : 12.5,
-            // transformOrigin: 'right',
-            // transform: d => `rotate(${d.x}deg)`,
             ...animatedStyles
           }
         }}

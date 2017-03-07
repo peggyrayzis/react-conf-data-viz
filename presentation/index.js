@@ -39,8 +39,8 @@ const images = {
   react: require('../assets/react.svg'),
   heart: require('../assets/heart.svg'),
   redBulls: require('../assets/red bulls.gif'),
-  androidShots: require('../assets/android shots.gif'),
-  iosShots: require('../assets/ios shots.gif'),
+  androidShots: require('../assets/android-shots-2.gif'),
+  iosShots: require('../assets/ios-shots.gif'),
   d3: require('../assets/d3.svg'),
   formidable: require('../assets/formidable-logo.svg'),
   victory: require('../assets/victory-logo.svg'),
@@ -150,7 +150,6 @@ export default class Presentation extends React.Component {
         <Slide transition={['fade']} bgColor='primary' textColor='tertiary'>
           <Heading size={5} textColor='secondary' caps>The developer experience is 💯</Heading>
           <List>
-            {/* bridges the gap btwn design & developer skill sets */}
             <Appear><ListItem>Composable chart components</ListItem></Appear>
             <Appear><ListItem>Flexible & interactive</ListItem></Appear>
             <Appear><ListItem>Web, iOS, and Android with minimal modifications</ListItem></Appear>
@@ -198,7 +197,13 @@ export default class Presentation extends React.Component {
               justifyContent: 'flex-start'
             }}>
               <Text padding='0 0 2vw 0' textSize='5vw' textColor='primary'>iOS</Text>
-              <Image height='65vh' style={{margin: '0 auto'}} src={images.iosShots} />
+              <Image
+                height='65vh'
+                style={{
+                  margin: '0 auto',
+                  boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+                }}
+                src={images.iosShots} />
             </div>
             <div style={{
               display: 'flex',
@@ -206,7 +211,13 @@ export default class Presentation extends React.Component {
               justifyContent: 'flex-start'
             }}>
               <Text padding='0 0 2vw 0' textSize='5vw' textColor='primary'>Android</Text>
-              <Image height='65vh' style={{margin: '0 auto'}} src={images.androidShots} />
+              <Image
+                height='65vh'
+                style={{
+                  margin: '0 auto',
+                  boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+                }}
+                src={images.androidShots} />
             </div>
           </div>
         </Slide>
