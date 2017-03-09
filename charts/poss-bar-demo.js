@@ -1,7 +1,7 @@
 import React from 'react'
-import { VictoryAnimation, VictoryBar } from 'victory'
+import { VictoryAnimation, VictoryBar, Bar } from 'victory'
 
-const PossessionBar = ({ colorScheme, data, faded }) => (
+const PossessionBar = ({ colorScheme, data, faded, onClick }) => (
   <VictoryAnimation
     data={{ opacity: faded ? 0.1 : 1 }}
     duration={500}
@@ -10,6 +10,10 @@ const PossessionBar = ({ colorScheme, data, faded }) => (
       <VictoryBar
         height={306}
         width={130}
+        events={[{
+          target: 'data',
+          eventHandlers: { onClick }
+        }]}
         domain={{x: [0, 2], y: [30, 70]}}
         domainPadding={7}
         style={{

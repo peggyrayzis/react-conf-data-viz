@@ -23,16 +23,6 @@ function generateTheta (numCharts) {
 
 const theta = generateTheta(20)
 
-function getTeamDataObj ({ clubStats, ...data }, matchId) {
-  return {
-    ...data,
-    matchId,
-    possTtl: clubStats.possession_percentage.statValue,
-    possFH: clubStats.possession_percentage.statFH,
-    possSH: clubStats.possession_percentage.statSH,
-  }
-}
-
 @Radium
 export default class PossessionBarDemo extends Component {
   static defaultProps = {
@@ -57,6 +47,16 @@ export default class PossessionBarDemo extends Component {
     parentDiv.style.height = '100%'
   }
 
+  getTeamDataObj ({ clubStats, ...data }, matchId) {
+    return {
+      ...data,
+      matchId,
+      possTtl: clubStats.possession_percentage.statValue,
+      possFH: clubStats.possession_percentage.statFH,
+      possSH: clubStats.possession_percentage.statSH,
+    }
+  }
+
   onMatchClicked (matchId) {
     matchId === this.state.activeMatch
       ? this.setState({ activeMatch: null })
@@ -76,7 +76,6 @@ export default class PossessionBarDemo extends Component {
     return (
       <div
         key={`bar-${i}`}
-        onClick={() => this.onMatchClicked(matchId)}
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -90,6 +89,7 @@ export default class PossessionBarDemo extends Component {
       }}>
         <PossessionBar
           faded={activeMatch && matchId !== activeMatch}
+          onClick={() => this.onMatchClicked(matchId)}
           colorScheme={colorScheme}
           data={[
             { x: 0, y: possTtl },
@@ -130,10 +130,10 @@ export default class PossessionBarDemo extends Component {
     let awayTeams = []
 
     data.forEach(({ home, away, matchId }) => {
-      let homeObj = getTeamDataObj(home, matchId)
+      let homeObj = this.getTeamDataObj(home, matchId)
       homeTeams.push(homeObj)
 
-      let awayObj = getTeamDataObj(away, matchId)
+      let awayObj = this.getTeamDataObj(away, matchId)
       awayTeams.push(awayObj)
     })
 
@@ -150,9 +150,9 @@ export default class PossessionBarDemo extends Component {
           { teams.map((team, i) => this.renderCircle(team, i)) }
         </div>
         <div style={[styles.statsContainer, activeMatch && styles.showStats]}>
-          { activeMatch
-            ? <StatsDetail activeMatch={data.filter(({ matchId }) => activeMatch === matchId)[0]} />
-            : null
+          { activeMatch &&
+            <StatsDetail
+              activeMatch={data.filter(({ matchId }) => activeMatch === matchId)[0]} />
           }
         </div>
       </div>
@@ -195,7 +195,7 @@ const styles = {
     height: '190px',
     visibility: 'hidden',
     opacity: 0,
-    transition: 'visibility 0s, opacity 0.5s ease-in-out'
+    transition: 'visibility 0.5s ease-in-out, opacity 1s ease-in-out'
   },
   showStats: {
     visibility: 'visible',

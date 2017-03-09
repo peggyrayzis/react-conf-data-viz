@@ -147,14 +147,6 @@ export default class Presentation extends React.Component {
             <Text padding='2vw 0 0 0' textColor='tertiary'>A modular charting library for React & React Native 😍</Text>
           </div>
         </Slide>
-        <Slide transition={['fade']} bgColor='primary' textColor='tertiary'>
-          <Heading size={5} textColor='secondary' caps>The developer experience is 💯</Heading>
-          <List>
-            <Appear><ListItem>Composable chart components</ListItem></Appear>
-            <Appear><ListItem>Flexible & interactive</ListItem></Appear>
-            <Appear><ListItem>Web, iOS, and Android with minimal modifications</ListItem></Appear>
-          </List>
-        </Slide>
         <Slide transition={['fade']} bgColor='quartenary' textColor='primary'>
           <Heading size={5} style={{paddingBottom: '6vw', margin: '0 auto'}} lineHeight={1} textColor='primary'>
             Composable chart components ✅
@@ -162,7 +154,7 @@ export default class Presentation extends React.Component {
           <VictoryPlayground />
         </Slide>
         <Slide transition={['fade']} bgColor='secondary' textColor='primary'>
-          <Heading size={5} style={{paddingBottom: '3.5vw', margin: '0 auto'}} lineHeight={1} textColor='primary'>
+          <Heading size={5} style={{margin: '0 auto', paddingTop: '1.5vh'}} lineHeight={1} textColor='primary'>
             Flexible & interactive ✅
           </Heading>
           <ShotsDemo game={data[3]} />
@@ -256,13 +248,15 @@ export default class Presentation extends React.Component {
           </div>
         </Slide>
         <Slide transition={['fade']} bgImage={images.gradientBg}>
-          <Link href='http://react-conf-data-viz.surge.sh/'>
+          <Link href='https://react-conf-data-viz.surge.sh/'>
             <Text textSize='5.7vw' textColor='tertiary'>
               react-conf-data-viz.surge.sh
             </Text>
           </Link>
           <Text textSize='5.7vw' textColor='secondary'>
-            @peggyrayzis
+            {/* <Link href='https://twitter.com/peggyrayzis'> */}
+              @peggyrayzis
+            {/* </Link> */}
           </Text>
         </Slide>
       </Deck>

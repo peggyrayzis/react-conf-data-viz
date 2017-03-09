@@ -4,24 +4,24 @@ import Radium from 'radium'
 const StatsDetail = ({ activeMatch: { home, away } }) => (
   <div style={styles.main}>
     <div style={styles.container}>
-      <p style={[styles.layout, {color: home.colors[0], margin: '0', fontSize: '22px'}]}>{home.name}</p>
-      <p style={[styles.layout, styles.team]}>-</p>
-      <p style={[styles.layout, {color: away.colors[0], margin: '0', fontSize: '22px'}]}>{away.name}</p>
+      <p style={[styles.layout, {color: away.colors[0], margin: '0', fontSize: '22px', fontWeight: 'bold'}]}>{away.name}</p>
+      <p style={[styles.layout, styles.team]}>vs</p>
+      <p style={[styles.layout, {color: home.colors[0], margin: '0', fontSize: '22px', fontWeight: 'bold'}]}>{home.name}</p>
     </div>
     <div style={styles.container}>
-      <p style={[styles.layout, styles.team, {color: home.colors[0]}]}>{home.clubStats.possession_percentage.statValue}</p>
+      <p style={[styles.layout, styles.team, {color: away.colors[0]}]}>{Math.round(away.clubStats.possession_percentage.statValue)}%</p>
       <p style={[styles.layout, styles.team]}>TTL</p>
-      <p style={[styles.layout, styles.team, {color: away.colors[0]}]}>{away.clubStats.possession_percentage.statValue}</p>
+      <p style={[styles.layout, styles.team, {color: home.colors[0]}]}>{Math.round(home.clubStats.possession_percentage.statValue)}%</p>
     </div>
     <div style={styles.container}>
-      <p style={[styles.layout, styles.team, {color: home.colors[0]}]}>{home.clubStats.possession_percentage.statFH}</p>
+      <p style={[styles.layout, styles.team, {color: away.colors[0]}]}>{Math.round(away.clubStats.possession_percentage.statFH)}%</p>
       <p style={[styles.layout, styles.team]}>1ST</p>
-      <p style={[styles.layout, styles.team, {color: away.colors[0]}]}>{away.clubStats.possession_percentage.statFH}</p>
+      <p style={[styles.layout, styles.team, {color: home.colors[0]}]}>{Math.round(home.clubStats.possession_percentage.statFH)}%</p>
     </div>
     <div style={styles.container}>
-      <p style={[styles.layout, styles.team, {color: home.colors[0]}]}>{home.clubStats.possession_percentage.statSH}</p>
+      <p style={[styles.layout, styles.team, {color: away.colors[0]}]}>{Math.round(away.clubStats.possession_percentage.statSH)}%</p>
       <p style={[styles.layout, styles.team]}>2ND</p>
-      <p style={[styles.layout, styles.team, {color: away.colors[0]}]}>{away.clubStats.possession_percentage.statSH}</p>
+      <p style={[styles.layout, styles.team, {color: home.colors[0]}]}>{Math.round(home.clubStats.possession_percentage.statSH)}%</p>
     </div>
   </div>
 )
@@ -31,8 +31,6 @@ const styles = {
     display: 'flex',
     zIndex: 1000,
     width: '100%',
-    // paddingRight: '0.5vw',
-    // paddingLeft: '0.5vw',
     justifyContent: 'space-around'
   },
   team: {
