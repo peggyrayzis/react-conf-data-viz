@@ -1,5 +1,5 @@
 // Import React
-import React from 'react';
+import React, { Component } from 'react';
 
 // Import Spectacle Core tags
 import {
@@ -20,8 +20,9 @@ import CodeSlide, { CodeSlideTitle } from 'spectacle-code-slide'
 import VictoryPlayground from './victory-playground'
 import ShotsDemo from './shots-demo'
 import PossessionBarDemo from './poss-demo'
-import data from '../data'
+import PlatformDemo from './platform-demo'
 import shotsDemoRN from './shots-demo/shots-pie-demo-rn.js'
+import data from '../data'
 
 // Import image preloader util
 import preloader from 'spectacle/lib/utils/preloader';
@@ -66,7 +67,7 @@ const theme = createTheme(colors, {
   secondary: 'Helvetica'
 });
 
-export default class Presentation extends React.Component {
+export default class Presentation extends Component {
   render() {
     return (
       <Deck transition={['zoom', 'slide']} transitionDuration={500} theme={theme}>
@@ -119,15 +120,18 @@ export default class Presentation extends React.Component {
           </div>
           <Appear><Text textSize='4vw' lineHeight={1} textColor='tertiary'>but is difficult for developers to execute.</Text></Appear>
         </Slide>
-        <Slide transition={['fade']} bgColor='primary'>
+        <Slide transition={['fade']} bgColor='secondary' textColor='primary'>
+          <ShotsDemo game={data[4]} />
+        </Slide>
+        <Slide transition={['fade']} bgColor='secondary'>
           <Layout>
             <Fill>
               <Image height={'27vw'} width={'27vw'} style={{margin: '0 auto'}} src={images.d3} />
             </Fill>
             <Fill>
-              <Appear><Text textColor='secondary' textSize='4.3vw' padding='3vw 0 0 0'>d3-scale</Text></Appear>
-              <Appear><Text textColor='secondary' textSize='4.3vw' padding='4vw 0 0 0'>d3-shape</Text></Appear>
-              <Appear><Text textColor='secondary' textSize='4.3vw' padding='4vw 0 0 0'>react-native-svg</Text></Appear>
+              <Appear><Text textColor='primary' textSize='4.3vw' padding='3vw 0 0 0'>d3-scale</Text></Appear>
+              <Appear><Text textColor='primary' textSize='4.3vw' padding='4vw 0 0 0'>d3-shape</Text></Appear>
+              <Appear><Text textColor='primary' textSize='4.3vw' padding='4vw 0 0 0'>react-native-svg</Text></Appear>
             </Fill>
           </Layout>
         </Slide>
@@ -147,6 +151,12 @@ export default class Presentation extends React.Component {
             <Text padding='2vw 0 0 0' textColor='tertiary'>A modular charting library for React & React Native 😍</Text>
           </div>
         </Slide>
+        <Slide transition={['fade']} bgColor='primary'>
+          <Text textSize='2.5em' lineHeight={1} textColor='secondary'>With Victory,</Text>
+          <Text textSize='2.5em' lineHeight={1} textColor='secondary'>our code reuse across</Text>
+          <Text textSize='2.5em' lineHeight={1} textColor='secondary'>React & React Native is</Text>
+          <Text textSize='2.5em' lineHeight={1} textColor='tertiary'>on average 90-95%.</Text>
+        </Slide>
         <Slide transition={['fade']} bgColor='quartenary' textColor='primary'>
           <Heading size={5} style={{paddingBottom: '6vw', margin: '0 auto'}} lineHeight={1} textColor='primary'>
             Composable chart components ✅
@@ -157,7 +167,7 @@ export default class Presentation extends React.Component {
           <Heading size={5} style={{margin: '0 auto', paddingTop: '1.5vh'}} lineHeight={1} textColor='primary'>
             Flexible & interactive ✅
           </Heading>
-          <ShotsDemo game={data[3]} />
+          <ShotsDemo game={data[4]} />
         </Slide>
         <CodeSlide
           bgColor='#05416B'
@@ -167,8 +177,7 @@ export default class Presentation extends React.Component {
           ranges={[
             { loc: [1, 7],
               title: 'Make your chart cross-platform!',
-              note: '1. Import your components from victory-native'
-            },
+              note: '1. Import your components from victory-native' },
             { loc: [8, 9],
               title: 'Make your chart cross-platform!',
               note: '2. Swap browser svg with react-native-svg' },
@@ -181,36 +190,35 @@ export default class Presentation extends React.Component {
           <div style={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-around'
+            justifyContent: 'space-around',
+            alignItems: 'center'
           }}>
+            <PlatformDemo platform='iOS' src={images.iosShots} />
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'flex-start'
+              alignItems: 'center',
+              width: '14vw'
             }}>
-              <Text padding='0 0 2vw 0' textSize='5vw' textColor='primary'>iOS</Text>
-              <Image
-                height='65vh'
-                style={{
-                  margin: '0 auto',
-                  boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
-                }}
-                src={images.iosShots} />
+              <Text textColor='primary' textSize='5vw'>100%</Text>
+              <Text textColor='primary' textSize='2.2vw'>Code Reuse</Text>
+              <div
+                display='flex'
+                flexDirection='row'
+                justifyContent='center'>
+                <Image
+                  height={'6vw'}
+                  width={'10vw'}
+                  style={{margin: '0 -2.8vw', transform: 'scaleX(-1)'}}
+                  src={images.arrow} />
+                <Image
+                  height={'6vw'}
+                  width={'10vw'}
+                  style={{margin: '0 -2.8vw'}}
+                  src={images.arrow} />
+              </div>
             </div>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-start'
-            }}>
-              <Text padding='0 0 2vw 0' textSize='5vw' textColor='primary'>Android</Text>
-              <Image
-                height='65vh'
-                style={{
-                  margin: '0 auto',
-                  boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
-                }}
-                src={images.androidShots} />
-            </div>
+            <PlatformDemo platform='Android' src={images.androidShots} />
           </div>
         </Slide>
         <Slide maxHeight='100%' maxWidth='100%' style={{ height: '100% '}} transition={['fade']} bgColor='secondary'>
@@ -253,11 +261,11 @@ export default class Presentation extends React.Component {
               react-conf-data-viz.surge.sh
             </Text>
           </Link>
-          <Text textSize='5.7vw' textColor='secondary'>
-            {/* <Link href='https://twitter.com/peggyrayzis'> */}
+          <Link href='https://twitter.com/peggyrayzis'>
+            <Text textSize='5.7vw' textColor='secondary'>
               @peggyrayzis
-            {/* </Link> */}
-          </Text>
+            </Text>
+          </Link>
         </Slide>
       </Deck>
     );

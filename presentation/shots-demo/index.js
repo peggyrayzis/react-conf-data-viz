@@ -4,6 +4,23 @@ import Radium from 'radium'
 import Legend from './legend'
 import ShotsPie from '../../charts/shots-pie-demo.js'
 
+function getShotsStatsByPeriod (stats, period) {
+  let periodValue = 'statValue'
+
+  if (period === 'first-half') {
+    periodValue = 'statFH'
+  } else if (period === 'second-half') {
+    periodValue = 'statSH'
+  }
+
+  return {
+    blockedShots: stats.blocked_scoring_att[periodValue],
+    offTargetShots: stats.shot_off_target[periodValue],
+    onTargetShots: stats.ontarget_scoring_att[periodValue],
+    totalShots: stats.total_scoring_att[periodValue]
+  }
+}
+
 @Radium
 export default class ShotsView extends Component {
   constructor () {
@@ -15,24 +32,6 @@ export default class ShotsView extends Component {
 
     this.onShotsToggle = this.onShotsToggle.bind(this)
   }
-
-  getShotsStatsByPeriod (stats, period) {
-    let periodValue = 'statValue'
-
-    if (period === 'first-half') {
-      periodValue = 'statFH'
-    } else if (period === 'second-half') {
-      periodValue = 'statSH'
-    }
-
-    return {
-      blockedShots: stats.blocked_scoring_att[periodValue],
-      offTargetShots: stats.shot_off_target[periodValue],
-      onTargetShots: stats.ontarget_scoring_att[periodValue],
-      totalShots: stats.total_scoring_att[periodValue]
-    }
-  }
-
 
   onShotsToggle (shotsToggle) {
     this.setState({ shotsToggle })
@@ -75,15 +74,14 @@ export default class ShotsView extends Component {
     const { shotsToggle } = this.state
     const { game } = this.props
 
-    const homeShots = this.getShotsStatsByPeriod(game.home.clubStats, shotsToggle)
-    const awayShots = this.getShotsStatsByPeriod(game.away.clubStats, shotsToggle)
+    const homeShots = getShotsStatsByPeriod(game.home.clubStats, shotsToggle)
+    const awayShots = getShotsStatsByPeriod(game.away.clubStats, shotsToggle)
 
     const homeColorScheme = ['#01162d', '#032959', '#084a9c']
     const awayColorScheme = ['#65021b', '#ca0a37', '#fc5e86']
 
     return (
       <div style={styles.container}>
-        {/* <p style={styles.header}>Shots on Goal</p> */}
         {this.renderSegmentedControl()}
         <div style={styles.charts}>
           <div style={styles.chartContainer}>
