@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Radium from 'radium'
 
 import Legend from './legend'
+import SegmentedControl from './segmented-control'
 import ShotsPie from '../../charts/shots-pie-demo.js'
 
 function getShotsStatsByPeriod (stats, period) {
@@ -37,39 +38,6 @@ export default class ShotsView extends Component {
     this.setState({ shotsToggle })
   }
 
-  renderSegmentedControl () {
-    const { shotsToggle } = this.state
-    const {
-      leftButton,
-      rightButton,
-      toggleButton,
-      selectedStyle,
-      selectedButtonText,
-      buttonText,
-      buttonRow
-    } = styles.segmentedControl
-
-    return (
-      <div style={buttonRow}>
-        <div
-          style={[toggleButton, leftButton, shotsToggle === 'total' && selectedStyle]}
-          onClick={() => this.onShotsToggle('total')}>
-            <p style={[buttonText, shotsToggle === 'total' && selectedButtonText]}>Total</p>
-        </div>
-        <div
-          style={[toggleButton, shotsToggle === 'first-half' && selectedStyle]}
-          onClick={() => this.onShotsToggle('first-half')}>
-            <p style={[buttonText, shotsToggle === 'first-half' && selectedButtonText]}>1st Half</p>
-        </div>
-        <div
-          style={[toggleButton, rightButton, shotsToggle === 'second-half' && selectedStyle]}
-          onClick={() => this.onShotsToggle('second-half')}>
-            <p style={[buttonText, shotsToggle === 'second-half' && selectedButtonText]}>2nd Half</p>
-        </div>
-      </div>
-    )
-  }
-
   render () {
     const { shotsToggle } = this.state
     const { game } = this.props
@@ -82,7 +50,9 @@ export default class ShotsView extends Component {
 
     return (
       <div style={styles.container}>
-        {this.renderSegmentedControl()}
+        <SegmentedControl
+          onShotsToggle={this.onShotsToggle}
+          shotsToggle={shotsToggle} />
         <div style={styles.charts}>
           <div style={styles.chartContainer}>
             <ShotsPie
@@ -132,42 +102,5 @@ const styles = {
     textSize: '2vw',
     color: '#651747',
     margin: '2vw'
-  },
-  segmentedControl: {
-    buttonRow: {
-      alignItems: 'center',
-      display: 'flex',
-      flexDirection: 'row'
-    },
-    leftButton: {
-      borderBottomLeftRadius: '0.8vw',
-      borderRightWidth: '0px',
-      borderTopLeftRadius: '0.8vw'
-    },
-    rightButton: {
-      borderBottomRightRadius: '0.8vw',
-      borderLeftWidth: '0px',
-      borderTopRightRadius: '0.8vw'
-    },
-    selectedStyle: {
-      backgroundColor: '#651747'
-    },
-    buttonText: {
-      color: '#651747',
-      textAlign: 'center',
-      margin: '0 auto',
-      fontSize: '1.5vw'
-    },
-    selectedButtonText: {
-      color: '#FDFEFE'
-    },
-    toggleButton: {
-      backgroundColor: 'transparent',
-      display: 'flex',
-      alignItems: 'center',
-      height: '3vw',
-      width: '8vw',
-      border: '1px solid #651747'
-    }
   }
 }

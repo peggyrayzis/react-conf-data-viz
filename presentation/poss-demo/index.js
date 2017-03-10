@@ -3,9 +3,9 @@ import Color from 'color'
 import Radium from 'radium'
 
 import Logo from './logo'
+import SoccerBall from './soccer-ball'
 import StatsDetail from './stats-detail'
 import PossessionBar from '../../charts/poss-bar-demo'
-const soccer = require('../../assets/soccer.svg')
 
 function generateColorScheme (shade) {
   const color = new Color(shade)
@@ -144,7 +144,7 @@ export default class PossessionBarDemo extends Component {
         <div style={styles.chartsContainer}>
           { teams.map((team, i) => this.renderBar(team, i, generateColorScheme(team.colors[0]))) }
         </div>
-        <img name='ball' style={[styles.soccerBall, activeMatch && styles.soccerBallShrink]} src={soccer} />
+        <SoccerBall shrink={activeMatch} />
         <div style={styles.circleContainer} />
         <div style={styles.logosContainer}>
           { teams.map((team, i) => this.renderCircle(team, i)) }
@@ -200,14 +200,5 @@ const styles = {
   showStats: {
     visibility: 'visible',
     opacity: 1
-  },
-  soccerBall: {
-    width: 140,
-    height: 140,
-    zIndex: 1000,
-    transition: '.6s ease-in-out'
-  },
-  soccerBallShrink: {
-    transform: 'scale(0)'
   }
 }

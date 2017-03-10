@@ -1,21 +1,13 @@
-# Spectacle Boilerplate
+# Cross-Platform Data Visualization with React & React Native
 
-## Reference
+Check out the slides online [here](https://react-conf-data-viz.surge.sh/#/)! This presentation was built with [Spectacle](https://github.com/FormidableLabs/spectacle) and [Victory](https://github.com/FormidableLabs/victory).
 
-The Spectacle core API is available at [https://github.com/FormidableLabs/spectacle/blob/master/README.markdown](https://github.com/FormidableLabs/spectacle/blob/master/README.markdown).
+## Slides
+This repo contains all of the slides & chart components featured in my ⚡️ talk for React Conf 2017. All Victory cross-platform charts are in `charts/` and all UI components are in `presentation/`.
 
-## Development
+## Questions
+If you have any questions about the charts I built or any of my Spectacle code, please feel free to open an issue or start a conversation on [Twitter](https://twitter.com/peggyrayzis).
 
-After downloading the boilerplate, your first order of business is to open terminal and run `yarn`. (or `npm install` if you're about that life)
+## Build Locally
 
-Next, run `rm -R .git` to remove the existing version control.
-
-Then, to start up the local server, run `npm start`
-
-Open a browser and hit [http://localhost:3000](http://localhost:3000), and we are ready to roll
-
-## Build & Deployment
-
-Building the dist version of the project is as easy as running `npm run build`
-
-If you want to deploy the slideshow to surge, run `npm run deploy`
+If you want to run the project locally, please fork & clone the repo. Install all dependencies with `yarn` and run `npm run start` to start the webpack server.

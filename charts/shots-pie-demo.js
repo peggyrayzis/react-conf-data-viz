@@ -3,6 +3,7 @@ import {
   VictoryPie,
   VictoryTransition,
   VictoryContainer,
+  VictorySharedEvents,
   VictoryLabel
 } from 'victory'
 
@@ -17,7 +18,6 @@ const ShotsPie = ({ colorScheme, stats }) => {
           width={300}
           height={300}
           standalone={false}
-          containerComponent={<VictoryContainer height={300} style={{marginTop: 10}} />}
           data={[
             { x: 2, y: onTargetShots || 0 },
             { x: 3, y: offTargetShots || 0 },
