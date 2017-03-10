@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Color from 'color'
 import Radium from 'radium'
+import { VictoryAnimation } from 'victory'
 
 import Logo from './logo'
 import SoccerBall from './soccer-ball'
@@ -149,12 +150,19 @@ export default class PossessionBarDemo extends Component {
         <div style={styles.logosContainer}>
           { teams.map((team, i) => this.renderCircle(team, i)) }
         </div>
-        <div style={[styles.statsContainer, activeMatch && styles.showStats]}>
-          { activeMatch &&
-            <StatsDetail
-              activeMatch={data.filter(({ matchId }) => activeMatch === matchId)[0]} />
-          }
-        </div>
+        <VictoryAnimation
+          data={{ opacity: activeMatch ? 1 : 0 }}
+          duration={800}
+          easing='quadIn' >
+          {({ opacity }) => (
+            <div style={[styles.statsContainer, opacity]}>
+              { activeMatch &&
+                <StatsDetail
+                  activeMatch={data.filter(({ matchId }) => activeMatch === matchId)[0]} />
+              }
+            </div>
+          )}
+        </VictoryAnimation>
       </div>
     )
   }
@@ -193,12 +201,5 @@ const styles = {
     position: 'absolute',
     width: '140px',
     height: '190px',
-    visibility: 'hidden',
-    opacity: 0,
-    transition: 'visibility 0.5s ease-in-out, opacity 1s ease-in-out'
-  },
-  showStats: {
-    visibility: 'visible',
-    opacity: 1
   }
 }

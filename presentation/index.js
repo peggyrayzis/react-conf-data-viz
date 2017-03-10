@@ -1,7 +1,6 @@
 // Import React
 import React, { Component } from 'react';
 
-// Import Spectacle Core tags
 import {
   Appear,
   Deck,
@@ -10,8 +9,6 @@ import {
   Image,
   Layout,
   Link,
-  List,
-  ListItem,
   Slide,
   Text
 } from 'spectacle';
@@ -21,6 +18,7 @@ import VictoryPlayground from './victory-playground'
 import ShotsDemo from './shots-demo'
 import PossessionBarDemo from './poss-demo'
 import PlatformDemo from './platform-demo'
+
 import shotsDemoRN from './shots-demo/shots-pie-demo-rn.js'
 import data from '../data'
 
@@ -43,7 +41,6 @@ const images = {
   androidShots: require('../assets/android-shots-2.gif'),
   iosShots: require('../assets/ios-shots.gif'),
   d3: require('../assets/d3.svg'),
-  formidable: require('../assets/formidable-logo.svg'),
   victory: require('../assets/victory-logo.svg'),
   gradientBg: require('../assets/background-gradient.svg'),
   mobileChart: require('../assets/mobile-with-chart.png'),
