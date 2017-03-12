@@ -10,4 +10,4 @@ If you have any questions about the charts I built or any of my Spectacle code, 
 
 ## Build Locally
 
-If you want to run the project locally, please fork & clone the repo. Install all dependencies with `yarn` and run `npm run start` to start the webpack server.
+If you want to run the project locally, please fork & clone the repo. Install all dependencies with `yarn`, run `npm run build`, and run `npm run start` to start the webpack server.
