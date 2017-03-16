@@ -253,9 +253,9 @@ export default class Presentation extends Component {
           </div>
         </Slide>
         <Slide transition={['fade']} bgImage={images.gradientBg}>
-          <Link href='https://react-conf-data-viz.surge.sh/'>
+          <Link href='https://github.com/peggyrayzis/react-conf-data-viz'>
             <Text textSize='5.7vw' textColor='tertiary'>
-              react-conf-data-viz.surge.sh
+              Check it out on GitHub!
             </Text>
           </Link>
           <Link href='https://twitter.com/peggyrayzis'>
