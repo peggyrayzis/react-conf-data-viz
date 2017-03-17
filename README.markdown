@@ -1,6 +1,6 @@
 # Cross-Platform Data Visualization with React & React Native
 
-Check out the slides online [here](https://react-conf-data-viz.surge.sh/#/)! This presentation was built with [Spectacle](https://github.com/FormidableLabs/spectacle) and [Victory](https://github.com/FormidableLabs/victory).
+Check out the slides online [here](https://react-conf-data-viz.surge.sh/#/) and the recording on [Youtube](https://www.youtube.com/watch?v=lF-ztmPVWmo)! This presentation was built with [Spectacle](https://github.com/FormidableLabs/spectacle) and [Victory](https://github.com/FormidableLabs/victory).
 
 ## Slides
 This repo contains all of the slides & chart components featured in my ⚡️ talk for React Conf 2017. All Victory cross-platform charts are in `charts/` and all UI components are in `presentation/`.
